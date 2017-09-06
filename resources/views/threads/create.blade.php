@@ -8,10 +8,17 @@
                 <div class="panel-heading">Create a New Thread</div>
 
                 <div class="panel-body">
-                    <div class="input-group">
-                      <span class="input-group-addon" ></span>
-                      <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-                    </div>
+                    <label>Title:</label>
+                    <input type="text" class="form-control">
+                </div>
+
+                <div class="panel-body">
+                    <label>Body:</label>
+                    <textarea rows="8" class="form-control"></textarea>
+                </div>
+
+                <div class="panel-body">
+                    <button type="button" class="btn btn-primary">Publish</button>
                 </div>
             </div>
         </div>

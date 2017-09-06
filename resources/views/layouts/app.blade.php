@@ -37,6 +37,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
+                        <li><a href="/threads">Threads</a></li>
+                        <li><a href="/threads/create">New Thread</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
