@@ -11,5 +11,5 @@ Route::get('/threads/create', function() {
 });
 
 Route::get('/', function() {
-	return view('threads.greeting');
+	return view('messages.greeting');
 });
