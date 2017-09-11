@@ -5,6 +5,6 @@
 	<meta charset="utf-8">
 </head>
 <body>
-	<h1>This is greeting number {{$id}} with {{$count}} replies</h1>
+	<h1>This is greeting: {{ $greeting }}</h1>
 </body>
 </html>
