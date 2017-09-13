@@ -5,6 +5,6 @@
 	<meta charset="utf-8">
 </head>
 <body>
-	<h1>This is greeting: {{ $greeting }}</h1>
+	<h1>This is {{ $name }}</h1>
 </body>
 </html>

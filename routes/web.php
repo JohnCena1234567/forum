@@ -10,10 +10,7 @@ Route::get('/threads/create', function() {
 	return view('threads.create');
 });
 
-Route::get('/', function() {
-	$name = "Artur";
-	return view('messages.hello', compact('name'));
-});
+Route::get('/', 'GreetingController@show');
 
 Route::get('/greeting/{id}', function($id) {
 	$a = ['Dobre rano', 'Buon giorno', 'Servus', 'Privet', 'Zdrasti'];
