@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 class ThreadsController extends Controller
 {
     public function index() {
-    	return view('threads.index');
+    	$threads = [
+    		['title' => 'Titill A', 'body' => 'Lorem Ipsum dolor set.'],
+    		['title' => 'Titill B', 'body' => 'Texti B']
+    	];
+
+    	return view('threads.index', compact('threads'));
     }
 
     public function create() {
