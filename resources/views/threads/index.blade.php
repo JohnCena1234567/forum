@@ -12,10 +12,10 @@
                     @foreach ($threads as $thread)
                         <article>
                             <div>
-                                <h4>{{ $thread['title'] }}</h4>
+                                <h4>{{ $thread->title }}</h4>
                             </div>
                             <div class="body">
-                                {{ $thread['body'] }}
+                                {{ $thread->content }}
                             </div>
                         </article>
                         <hr>
