@@ -20,6 +20,14 @@
                 <div class="panel-body">
                     <button type="button" class="btn btn-primary">Publish</button>
                 </div>
+
+                @foreach ($countries as $country)
+                    @if($country === 'Island')
+                        <h1>{{ $country }}</h1>
+                    @elseif ($country === 'Irland')
+                        <p>{{ $country }}</p>
+                    @endif
+                @endforeach
             </div>
         </div>
     </div>
