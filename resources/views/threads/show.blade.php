@@ -5,20 +5,12 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Thread Title</div>
+                <div class="panel-heading"><label>{{ $thread[0]->title }}</label></div>
 
-                <div class="panel-body">
-                    @foreach ($threads as $thread)
-                        <article>
-                            <div>
-                                <h4>{{ $thread->title }}</h4>
-                            </div>
-                            <div class="body">
-                                {{ $thread->content }}
-                            </div>
-                        </article>
-                        <hr>
-                    @endforeach
+                <div class="panel-body">               
+                    <div class="body">
+                        {{ $thread[0]->content }}  
+                    </div>                  
                 </div>
             </div>
         </div>

@@ -21,6 +21,23 @@
                     <div class="panel-body">
                         <button type="button" class="btn btn-primary">Publish</button>
                     </div>
+
+                    <ul>
+                        @foreach($tasks as $task)
+                            @if($task['complete'] == false)
+                                <li>
+                                    <a href="{{ $task['anchor'] }}">{{ $task['title'] }}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <s>
+                                        <a href="{{ $task['anchor'] }}">{{ $task['title']}}</a>
+                                    </s>
+                                </li>
+                            @endif
+                        @endforeach
+                    </ul>
+
                 </form>
             </div>
         </div>

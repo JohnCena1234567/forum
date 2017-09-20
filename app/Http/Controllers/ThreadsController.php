@@ -14,14 +14,20 @@ class ThreadsController extends Controller
     }
 
     public function create() {
-    	$countries = ['Island', 'Island', 'Irland', 'Island', 'Irland'];
+    	$tasks = [
+    		['title' => 'Fara ut i bud', 'complete' => true, 'anchor' => 'https://www.bonus.is'],
+    		['title' => 'Klara heimanam', 'complete' => false, 'anchor' => 'https://www.google.is'],
+    		['title' => 'Kaupa mjolk', 'complete' => true, 'anchor' => 'http://www.netto.is'],
+    		['title' => 'Fara sofa', 'complete' => false, 'anchor' => 'https://www.ikea.is'],
+    		['title' => 'Kaupa nammi', 'complete' => false, 'anchor' => 'http://ungo.is']
+    	];
 
-    	return view('threads.create', compact('countries'));
+    	return view('threads.create', compact('tasks'));
     }
 
     public function show($id) {
-    	$threads = DB::select('select * from threads where id=?', [$id]);
+    	$thread = DB::select('select * from threads where id=?', [$id]);
     	
-    	return view('threads.show', compact('threads'));
+    	return view('threads.show', compact('thread'));
     }
 }
