@@ -15,7 +15,7 @@
                                 <h4>{{ $thread->title }}</h4>
                             </div>
                             <div class="body">
-                                {{ $thread->content }}
+                                {{ $thread->body }}
                             </div>
                         </article>
                         <hr>

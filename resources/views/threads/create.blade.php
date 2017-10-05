@@ -5,38 +5,23 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Create a New Thread</div>
-                    <form method="POST" action="/threads">
-                        {{ csrf_field() }}
-                        <div class="panel-body">
-                            <label>Title:</label>
-                            <input type="text" class="form-control">
-                        </div>
+            <div class="panel-heading">Create a New Thread</div>
+                <form method="POST" action="/threads">
+                    {{ csrf_field() }}
+                    <div class="panel-body">
+                        <label>Title:</label>
+                        <input type="text" name="title" class="form-control">
+                    </div>
 
-                        <div class="panel-body">
-                            <label>Body:</label>
-                            <textarea rows="8" class="form-control"></textarea>
-                        </div>
+                    <div class="panel-body">
+                        <label>Body:</label>
+                        <textarea rows="8" name="body" class="form-control"></textarea>
+                    </div>
 
-                        <div class="panel-body">
-                            <button type="submit" class="btn btn-primary">Publish</button>
-                        </div>
-                    </form>
-                        <ul>
-                            @foreach($tasks as $task)
-                                @if($task['complete'] == false)
-                                    <li>
-                                        <a href="{{ $task['anchor'] }}">{{ $task['title'] }}</a>
-                                    </li>
-                                @else
-                                    <li>
-                                        <s>
-                                            <a href="{{ $task['anchor'] }}">{{ $task['title']}}</a>
-                                        </s>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
+                    <div class="panel-body">
+                        <button type="submit" class="btn btn-primary">Publish</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

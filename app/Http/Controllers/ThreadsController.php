@@ -4,34 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Thread;
 
 class ThreadsController extends Controller
 {
     public function index() {
-    	$threads = DB::select('select * from threads');
+        $threads = Thread::all();
 
     	return view('threads.index', compact('threads'));
     }
 
     public function create() {
-    	$tasks = [
-    		['title' => 'Fara ut i bud', 'complete' => true, 'anchor' => 'https://www.bonus.is'],
-    		['title' => 'Klara heimanam', 'complete' => false, 'anchor' => 'https://www.google.is'],
-    		['title' => 'Kaupa mjolk', 'complete' => true, 'anchor' => 'http://www.netto.is'],
-    		['title' => 'Fara sofa', 'complete' => false, 'anchor' => 'https://www.ikea.is'],
-    		['title' => 'Kaupa nammi', 'complete' => false, 'anchor' => 'http://ungo.is']
-    	];
-
-    	return view('threads.create', compact('tasks'));
+    	return view('threads.create');
     }
 
     public function show($id) {
-    	$thread = DB::select('select * from threads where id=?', [$id]);
+        $thread = Thread::find($id);
+        $thread = DB::table('threads')->where('id', $id)->first();
     	
     	return view('threads.show', compact('thread'));
     }
 
-    public function store() {
-    	dd('Store Method');
+    public function store(Request $request) {
+    	$thread = new Thread;
+        $thread->title = $request->title;
+        $thread->body = $request->body;
+        $thread->user_id = 1;
+        $thread->save();
+        return redirect('/threads');
     }
 }
