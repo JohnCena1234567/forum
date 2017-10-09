@@ -8,7 +8,9 @@ use App\Thread;
 
 class ThreadsController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
+        return $request->path();
+
         $threads = Thread::all();
 
     	return view('threads.index', compact('threads'));
