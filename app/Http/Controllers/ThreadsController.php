@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Thread;
+use Validator;
+use Input;
 
 class ThreadsController extends Controller
 {
     public function index(Request $request) {
-        return $request->path();
-
         $threads = Thread::all();
 
     	return view('threads.index', compact('threads'));
@@ -28,6 +28,15 @@ class ThreadsController extends Controller
     }
 
     public function store(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:40',
+            'body' => 'required|min:20',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('/threads/create')->withInput()->withErrors($validator);
+        }
+
     	$thread = new Thread;
         $thread->title = $request->title;
         $thread->body = $request->body;

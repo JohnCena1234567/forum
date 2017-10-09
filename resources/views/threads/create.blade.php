@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+    @include('common.errors')
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -10,12 +11,12 @@
                     {{ csrf_field() }}
                     <div class="panel-body">
                         <label>Title:</label>
-                        <input type="text" name="title" class="form-control">
+                        <input type="text" name="title" value="{{ old('title') }}" class="form-control">
                     </div>
 
                     <div class="panel-body">
                         <label>Body:</label>
-                        <textarea rows="8" name="body" class="form-control"></textarea>
+                        <textarea rows="8" name="body" class="form-control">{{ old('body') }}</textarea>
                     </div>
 
                     <div class="panel-body">
