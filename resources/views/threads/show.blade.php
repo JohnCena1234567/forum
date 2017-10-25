@@ -14,6 +14,7 @@
                     </div>                  
                 </div>
             </div>
+
             @guest
             @else
             <form method="POST" action="/threads/{{$thread->id}}" class="panel">
@@ -27,12 +28,16 @@
                 </div>
             </form>
             @endguest
-            @foreach($comments as $comment)
+            
+            <h4>Comments</h4>
+            @foreach($thread->comments as $comment)
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                        <small class="text-muted">
+                    <div class="panel-heading">
+                        <h5>
                             Published by {{ $thread->user->name }}
-                        </small>
+                        </h5>
+                    </div>
+                    <div class="panel-body">      
                         <p class="font-italic">
                             {{ $comment->comment }}
                         </p> 
