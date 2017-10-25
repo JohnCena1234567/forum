@@ -5,13 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Thread;
+use App\Comment;
 use Validator;
 use Input;
+use Auth;
 
-class ThreadsController extends Controller
-{
-    public function index(Request $request) {
-        $threads = Thread::all();
+class ThreadsController extends Controller {
+    public function __construct() {
+        $this->middleware('auth')->except('index', 'show');
+    }
+
+    public function index() {
+        $threads = Thread::orderBy('created_at', 'desc')->get();
 
     	return view('threads.index', compact('threads'));
     }
@@ -22,26 +27,23 @@ class ThreadsController extends Controller
 
     public function show($id) {
         $thread = Thread::find($id);
-        $thread = DB::table('threads')->where('id', $id)->first();
+        $comments = Comment::where('thread_id', '=', $id)->get();
     	
-    	return view('threads.show', compact('thread'));
+    	return view('threads.show', compact('thread', 'comments'));
     }
 
     public function store(Request $request) {
-        $validator = Validator::make($request->all(), [
+        $this->validate($request, [
             'title' => 'required|max:40',
-            'body' => 'required|min:20',
+            'body' => 'required'
         ]);
 
-        if ($validator->fails()) {
-            return redirect('/threads/create')->withInput()->withErrors($validator);
-        }
+        Thread::create([
+            'title' => $request->title,
+            'body' => $request->body,
+            'user_id' => Auth::id()
+        ]);
 
-    	$thread = new Thread;
-        $thread->title = $request->title;
-        $thread->body = $request->body;
-        $thread->user_id = 1;
-        $thread->save();
         return redirect('/threads');
     }
 }

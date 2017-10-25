@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLeikstjoriTable extends Migration
+class CreateCommentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateLeikstjoriTable extends Migration
      */
     public function up()
     {
-        Schema::create('leikstjori', function (Blueprint $table) {
+        Schema::create('comment', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nafn');
-            $table->string('thjoderni');
+            $table->text('comment');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('thread_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('thread_id')->references('id')->on('threads');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateLeikstjoriTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leikstjori');
+        Schema::dropIfExists('comment');
     }
 }
